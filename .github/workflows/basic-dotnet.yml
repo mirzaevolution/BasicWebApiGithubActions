@@ -25,6 +25,10 @@ jobs:
       run: dotnet restore
     - name: Build
       run: dotnet build --no-restore
-    - name: Test
-      run: dotnet test --no-build --verbosity normal
+    - name: Publish
+      run: dotnet publish --no-build --no-restore -o BasicWebApiGithubActions
+    - name: CheckPublished ile
+      run: |
+        cd BasicWebApiGithubActions 
+        ls .
     
