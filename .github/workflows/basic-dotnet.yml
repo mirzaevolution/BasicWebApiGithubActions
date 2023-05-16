@@ -36,5 +36,5 @@ jobs:
       with:
         # Artifact name
         name: BasicWebApiGithubActions
-        path: Publish/
+        path: Publish/App
     
