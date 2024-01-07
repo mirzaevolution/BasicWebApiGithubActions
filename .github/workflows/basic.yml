@@ -11,13 +11,22 @@ jobs:
     steps:
       - run: |
           $github = @"
-            "${{ toJson(github) }}"
+            ${{ toJson(github) }}
           "@;
+          $runner = @"
+            ${{ toJson(runner) }}
+          "@
+          $job = @"
+            ${{ toJson(job) }}
+          "@
           write-output("Creator: ${{ env.creator}} ");
           write-output("The job was automatically trigger by a ${{ github.event_name }}");
           write-output("This job is running on a ${{ runner.os }} server hosted by GitHub!");
           write-output("Branch: ${{ github.ref }}. Repo: ${{ github.repository }}");
           write-output($github);
+          write-output($runner);
+          write-output($job);
+          
         shell: powershell
         name: "Initial script run"
       - name: Checkout
