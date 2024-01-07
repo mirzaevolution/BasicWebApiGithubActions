@@ -10,11 +10,12 @@ jobs:
       creator: "Mirza Ghulam Rasyid"
     steps:
       - run: |
+          $github = ${{ github }} | ConvertTo-Json;
           write-output("Creator: ${{ env.creator}} ");
           write-output("The job was automatically trigger by a ${{ github.event_name }}");
           write-output("This job is running on a ${{ runner.os }} server hosted by GitHub!");
           write-output("Branch: ${{ github.ref }}. Repo: ${{ github.repository }}");
-          write-output("${{ github }}");
+          write-output($github);
           write-output("${{ runner }}");
         shell: powershell
         name: "Initial script run"
