@@ -14,8 +14,8 @@ jobs:
           write-output("The job was automatically trigger by a ${{ github.event_name }}");
           write-output("This job is running on a ${{ runner.os }} server hosted by GitHub!");
           write-output("Branch: ${{ github.ref }}. Repo: ${{ github.repository }}");
-          write-output(${{ toJson(github) }});
-          write-output(${{ toJson(runner) }});
+          write-output("${{ toJson(github) }}");
+          write-output("${{ toJson(runner) }}");
         shell: powershell
         name: "Initial script run"
       - name: Checkout
@@ -24,5 +24,5 @@ jobs:
       - run: Get-ChildItem "${{github.workspace}}"
         name: "Listing current directory"
       - run: write-output("The job status is ${{job.status}}");
-      - run: write-output(${{ toJson(job) }});
+      - run: write-output("${{ toJson(job) }}");
       
