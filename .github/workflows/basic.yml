@@ -10,12 +10,14 @@ jobs:
       creator: "Mirza Ghulam Rasyid"
     steps:
       - run: |
+          $github = @"
+            "${{ toJson(github) }}"
+          "@;
           write-output("Creator: ${{ env.creator}} ");
           write-output("The job was automatically trigger by a ${{ github.event_name }}");
           write-output("This job is running on a ${{ runner.os }} server hosted by GitHub!");
           write-output("Branch: ${{ github.ref }}. Repo: ${{ github.repository }}");
-          write-output("${{ toJson(github) }}");
-          write-output("${{ toJson(runner) }}");
+          write-output($github);
         shell: powershell
         name: "Initial script run"
       - name: Checkout
@@ -24,5 +26,4 @@ jobs:
       - run: Get-ChildItem "${{github.workspace}}"
         name: "Listing current directory"
       - run: write-output("The job status is ${{job.status}}");
-      - run: write-output("${{ toJson(job) }}");
       
